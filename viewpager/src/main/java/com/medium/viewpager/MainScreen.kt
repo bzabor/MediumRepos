@@ -30,5 +30,11 @@ fun MainScreen(
         ) {
             Text(text = "Check vertical pager")
         }
+        Button(
+            modifier = Modifier.padding(top = 20.dp),
+            onClick = { navController.navigate(Route.CAROUSEL) }
+        ) {
+            Text(text = "Check carousel pager")
+        }
     }
 }

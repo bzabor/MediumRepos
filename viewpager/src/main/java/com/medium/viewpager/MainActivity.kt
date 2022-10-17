@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.medium.viewpager.ui.theme.CarouselPagerScreen
 import com.medium.viewpager.ui.theme.MediumReposTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,6 +38,10 @@ class MainActivity : ComponentActivity() {
                         composable(Route.VERTICAL) {
                             VerticalPagerScreen()
                         }
+
+                        composable(Route.CAROUSEL) {
+                            CarouselPagerScreen()
+                        }
                     }
                 }
             }
@@ -48,4 +53,5 @@ object Route {
     const val MAIN = "main"
     const val HORIZONTAL = "horizontal"
     const val VERTICAL = "vertical"
+    const val CAROUSEL = "carousel"
 }
