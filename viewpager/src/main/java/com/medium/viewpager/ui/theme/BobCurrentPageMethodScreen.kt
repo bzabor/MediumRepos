@@ -52,6 +52,7 @@ fun BobCurrentPageMethodScreen() {
             // Full Screen Horizontal Pager
             HorizontalPagerScreen(items, pagerState)
 
+
             // UI Content
             Column {
                 // Top Row
@@ -72,13 +73,10 @@ fun BobCurrentPageMethodScreen() {
                         .align(Alignment.CenterHorizontally)
                 ) {
                     Column {
-                        PagerIndicator(pagerState = pagerState)
-                        Text(
-                            modifier = Modifier
-                                .background(Color.LightGray),
-                            color = Color.Black,
-                            text = "PAGE: ${pagerState.currentPage}"
-                        )
+//                        PagerIndicator(pagerState = pagerState)
+                        WormPageIndicator(
+                            totalPages = items.size,
+                            currentPage = pagerState.currentPage)
                     }
                 }
                 // Text Content
