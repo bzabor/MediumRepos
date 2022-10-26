@@ -36,5 +36,18 @@ fun MainScreen(
         ) {
             Text(text = "Check carousel pager")
         }
+        Button(
+            modifier = Modifier.padding(top = 20.dp),
+            onClick = { navController.navigate(Route.BOB_CURRENT_PAGE_METHOD) }
+        ) {
+            Text(text = "Bob current page pager")
+        }
+        Button(
+            modifier = Modifier.padding(top = 20.dp),
+            onClick = { navController.navigate(Route.BOB_BUTTON_NAV) }
+        ) {
+            Text(text = "Bob button nav")
+        }
+
     }
 }

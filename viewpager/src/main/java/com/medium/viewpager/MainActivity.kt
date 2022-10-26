@@ -11,6 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.medium.viewpager.ui.theme.BobButtonNavScreen
+import com.medium.viewpager.ui.theme.BobCurrentPageMethodScreen
 import com.medium.viewpager.ui.theme.CarouselPagerScreen
 import com.medium.viewpager.ui.theme.MediumReposTheme
 
@@ -42,6 +44,14 @@ class MainActivity : ComponentActivity() {
                         composable(Route.CAROUSEL) {
                             CarouselPagerScreen()
                         }
+
+                        composable(Route.BOB_CURRENT_PAGE_METHOD) {
+                            BobCurrentPageMethodScreen()
+                        }
+
+                        composable(Route.BOB_BUTTON_NAV) {
+                            BobButtonNavScreen()
+                        }
                     }
                 }
             }
@@ -54,4 +64,6 @@ object Route {
     const val HORIZONTAL = "horizontal"
     const val VERTICAL = "vertical"
     const val CAROUSEL = "carousel"
+    const val BOB_BUTTON_NAV = "bob_button_nav"
+    const val BOB_CURRENT_PAGE_METHOD = "bob_current_page"
 }
