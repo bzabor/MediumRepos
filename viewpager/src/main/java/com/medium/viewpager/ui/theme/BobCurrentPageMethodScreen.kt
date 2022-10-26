@@ -40,10 +40,6 @@ fun BobCurrentPageMethodScreen() {
         val pagerState = rememberPagerState()
         val coroutineScope = rememberCoroutineScope()
 
-//        var speed by remember {
-//            mutableStateOf(1F)
-//        }
-
         Box(
             modifier = Modifier
                 .background(Color.Black)
@@ -124,7 +120,6 @@ val fourthClipSpec = LottieClipSpec.Progress(min = 0.57f, max = 0.76f)
 val fifthClipSpec = LottieClipSpec.Progress(min = 0.76f, max = 1.0f)
 
 @Composable
-//fun LottieAnimationContent(currentPage: Int, speed: Float) {
 fun LottieAnimationContent(currentPage: Int) {
 
     Log.d("ZZZ", "ENTER LottieAnimationContent()")
@@ -146,28 +141,6 @@ fun LottieAnimationContent(currentPage: Int) {
     }
 
     lottieComposition.value = LottieCompositionSpec.RawRes(R.raw.onboarding_carousel_test)
-
-    when (currentPage) {
-        0 -> {
-            clipSpec.value = firstClipSpec
-        }
-        1 -> {
-            clipSpec.value = secondClipSpec
-        }
-        2 -> {
-            clipSpec.value = thirdClipSpec
-        }
-        3 -> {
-            clipSpec.value = fourthClipSpec
-        }
-        4 -> {
-            clipSpec.value = fifthClipSpec
-        }
-    }
-    // TODO: Figure out the direction of swipe to play the partial animations in normal or reverse
-
-//    val lottieComposition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.onboarding_carousel_test))
-    val composition by rememberLottieComposition(spec = lottieComposition.value)
 
     var speed = prevSpeed
     if (currentPage != prevPage) {
@@ -192,19 +165,35 @@ fun LottieAnimationContent(currentPage: Int) {
 
     Log.d("ZZZ", "currentPage: $currentPage  prevPage: $prevPage speed: $speed")
 
+    when (currentPage) {
+        0 -> {
+            clipSpec.value = if (speed > 0) firstClipSpec else secondClipSpec
+        }
+        1 -> {
+            clipSpec.value = if (speed > 0) secondClipSpec else thirdClipSpec
+        }
+        2 -> {
+            clipSpec.value = if (speed > 0) thirdClipSpec else fourthClipSpec
+        }
+        3 -> {
+            clipSpec.value = if (speed > 0) fourthClipSpec else fifthClipSpec
+        }
+        4 -> {
+            clipSpec.value = fifthClipSpec
+        }
+    }
+    // TODO: Figure out the direction of swipe to play the partial animations in normal or reverse
+
+//    val lottieComposition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.onboarding_carousel_test))
+    val composition by rememberLottieComposition(spec = lottieComposition.value)
+
+
+
 
     val progress by animateLottieCompositionAsState(
         composition = composition,
         clipSpec = clipSpec.value,
         iterations = 1,
-
-        /**
-         * speed is the parameter that controls the animation will be played in normal or reverse
-         * 1.0f for normal and -1.0f is for reverse
-         */
-//        speed = 1.0f
-//        speed = (targetPage - currentPage).toFloat()
-//        speed = newSpeed
         speed = speed
     )
 
